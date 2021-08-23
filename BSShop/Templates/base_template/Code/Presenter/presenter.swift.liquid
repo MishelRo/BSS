@@ -1,0 +1,28 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+
+final class {{ module_info.name }}Presenter: {{ module_info.name }}PresenterFromViewProtocol {
+
+    // MARK: - Public Properties
+
+    weak var view: {{ module_info.name }}ViewProtocol!
+    var interactor: {{ module_info.name }}InteractorProtocol!
+    var router: {{ module_info.name }}RouterProtocol!
+
+    // MARK: - Protocol Implementation
+
+    func viewDidLoad() {
+
+    }
+
+}
+
+// MARK: - {{ module_info.name }}PresenterFromInteractorProtocol Implementation
+extension {{ module_info.name }}Presenter: {{ module_info.name }}PresenterFromInteractorProtocol {}

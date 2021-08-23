@@ -1,0 +1,29 @@
+# Template information section
+name: "base_template"
+summary: "Swift VIPER+Swinject module template."
+author: "Skibin Alexander"
+version: "1.0.0"
+license: "MIT"
+
+# The declarations for code files
+
+code_files:
+# View layer
+- {name: View/ViewProtocol.swift, path: Code/View/viewProtocol.swift.liquid}
+- {name: View/ViewController.swift, path: Code/View/view.swift.liquid}
+- {name: View/ViewController.xib, path: Code/View/view_controller.xib.liquid}
+
+# Presenter layer
+- {name: Presenter/PresenterProtocol.swift, path: Code/Presenter/presenterProtocol.swift.liquid}
+- {name: Presenter/Presenter.swift, path: Code/Presenter/presenter.swift.liquid}
+
+# Interactor layer
+- {name: Interactor/InteractorProtocol.swift, path: Code/Interactor/interactorProtocol.swift.liquid}
+- {name: Interactor/Interactor.swift, path: Code/Interactor/interactor.swift.liquid}
+
+# Router layer
+- {name: Router/RouterProtocol.swift, path: Code/Router/routerProtocol.swift.liquid}
+- {name: Router/Router.swift, path: Code/Router/router.swift.liquid}
+
+# Configurator
+- {name: Configurator/Configurator.swift, path: Code/Configurator/configurator.swift.liquid}

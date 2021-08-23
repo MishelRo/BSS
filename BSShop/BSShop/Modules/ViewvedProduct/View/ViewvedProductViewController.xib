@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewvedProductViewController" customModule="BSShop" customModuleProvider="target">
+            <connections>
+                <outlet property="basketOutlet" destination="DIN-fx-uFG" id="Vgp-OS-t0J"/>
+                <outlet property="collectionView" destination="AG7-IP-8yd" id="Ok9-9a-d6g"/>
+                <outlet property="firstLabel" destination="gVa-Fj-sUz" id="UDN-b5-qg5"/>
+                <outlet property="secondLabel" destination="1dn-KD-KPK" id="Rdf-3D-BYk"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Q3p-Ee-1CD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AG7-IP-8yd">
+                    <rect key="frame" x="0.0" y="34" width="414" height="528"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ULe-On-Y3f">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="2Tx-iE-u1y"/>
+                        <outlet property="delegate" destination="-1" id="2qj-zG-nZD"/>
+                        <outlet property="prefetchDataSource" destination="-1" id="jTU-gm-oGU"/>
+                    </connections>
+                </collectionView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="U7K-4W-177">
+                    <rect key="frame" x="20" y="582" width="374" height="150"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVa-Fj-sUz">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="rFc-0j-ld1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1dn-KD-KPK">
+                            <rect key="frame" x="0.0" y="28" width="374" height="122"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="fxh-01-qcZ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="1dn-KD-KPK" secondAttribute="bottom" id="6gY-2g-fS5"/>
+                        <constraint firstItem="gVa-Fj-sUz" firstAttribute="leading" secondItem="U7K-4W-177" secondAttribute="leading" id="Az9-Tm-xC8"/>
+                        <constraint firstItem="gVa-Fj-sUz" firstAttribute="top" secondItem="U7K-4W-177" secondAttribute="top" id="JJl-Tn-mec"/>
+                        <constraint firstItem="1dn-KD-KPK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gVa-Fj-sUz" secondAttribute="bottom" id="ad0-Cl-909"/>
+                        <constraint firstAttribute="trailing" secondItem="gVa-Fj-sUz" secondAttribute="trailing" id="ej1-EB-lko"/>
+                        <constraint firstItem="1dn-KD-KPK" firstAttribute="leading" secondItem="U7K-4W-177" secondAttribute="leading" id="nDP-2n-TKE"/>
+                        <constraint firstAttribute="trailing" secondItem="1dn-KD-KPK" secondAttribute="trailing" id="yMY-zA-UGY"/>
+                    </constraints>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIN-fx-uFG">
+                    <rect key="frame" x="20" y="786" width="374" height="76"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="76" id="3eJ-QV-D1d"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="48"/>
+                    <state key="normal" title="Add to my basket">
+                        <color key="titleColor" red="0.93726748230000001" green="0.93723231549999997" blue="0.93725609779999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="basket:" destination="-1" eventType="touchUpInside" id="Svd-kt-9lx"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="U7K-4W-177" secondAttribute="bottom" constant="130" id="1IJ-yq-OSK"/>
+                <constraint firstItem="DIN-fx-uFG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="1Kr-dT-O0z"/>
+                <constraint firstItem="DIN-fx-uFG" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="2eK-GC-JLn"/>
+                <constraint firstItem="U7K-4W-177" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="45N-js-sTy"/>
+                <constraint firstItem="AG7-IP-8yd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="34" id="Bod-VJ-YDZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DIN-fx-uFG" secondAttribute="trailing" constant="20" id="QsC-Fd-gk7"/>
+                <constraint firstItem="AG7-IP-8yd" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="RDY-1a-rXu"/>
+                <constraint firstItem="AG7-IP-8yd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="UXS-VI-6lo"/>
+                <constraint firstItem="U7K-4W-177" firstAttribute="top" secondItem="AG7-IP-8yd" secondAttribute="bottom" constant="20" id="ghJ-pS-JIy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="AG7-IP-8yd" secondAttribute="bottom" constant="300" id="jXy-yq-IHV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="U7K-4W-177" secondAttribute="trailing" constant="20" id="s6V-s2-DlF"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,23 @@
+### Headers settings
+company: BSShop
+
+### Xcode project settings
+project_name: BSShop
+xcodeproj_path: BSShop.xcodeproj
+
+### Code generation settings section
+# The main project target name
+project_target: BSShop
+
+# The file path for new modules
+project_file_path: /BSShop/BSShop
+
+# The Xcode group path to new modules
+project_group_path: /BSShop/BSShop
+
+### Dependencies settings section
+podfile_path: Podfile
+
+### Templates
+templates:
+- {name: base_template, local: /Users/user/Desktop/testProjects/BSShop/base_templatess/base_template}

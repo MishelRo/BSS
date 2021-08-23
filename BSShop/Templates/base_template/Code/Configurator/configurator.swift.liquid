@@ -1,0 +1,65 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Swinject
+import UIKit
+
+final class {{ module_info.name }}Configurator: NSObject, Assembly {
+
+    // MARK: - Public Properties
+    public var container: Container!
+
+    func assemble(container: Container) {
+        self.container = container
+        configure(container: container)
+    }
+    
+    private func configure(container: Container) {
+
+        // Assembly View Layer
+        container
+            .register({{ module_info.name }}ViewProtocol.self) { _ in {{ module_info.name }}ViewController() }
+            .initCompleted { r, c in
+                guard let view = c as? {{ module_info.name }}ViewController else { return }
+                view.presenter = r.resolve({{ module_info.name }}PresenterProtocol.self)
+            }
+
+        // Assembly Router Layer
+        container
+            .register({{ module_info.name }}RouterProtocol.self) { _ in {{ module_info.name }}Router() }
+            .initCompleted { _, c in
+                guard let router = c as? {{ module_info.name }}Router else { return }
+                router.configurator = self
+            }
+
+        // Assembly Presenter Layer
+        container
+            .register({{ module_info.name }}PresenterProtocol.self) { _ in {{ module_info.name }}Presenter() }
+            .initCompleted { r, c in
+                guard let presenter = c as? {{ module_info.name }}Presenter else { return }
+                presenter.view = r.resolve({{ module_info.name }}ViewProtocol.self)
+                presenter.router = r.resolve({{ module_info.name }}RouterProtocol.self)
+                presenter.interactor = r.resolve({{ module_info.name }}InteractorProtocol.self)
+            }
+
+        // Assembly Interactor Layer
+        container
+            .register({{ module_info.name }}InteractorProtocol.self) { _ in {{ module_info.name }}Interactor() }
+            .initCompleted { r, c in
+                guard let interactor = c as? {{ module_info.name }}Interactor else { return }
+                interactor.presenter = r.resolve({{ module_info.name }}PresenterProtocol.self)
+            }
+    }
+}
+
+// MARK: - ConfiguratorView
+extension {{ module_info.name }}Configurator: ConfiguratorView {
+    func getView() -> UIViewController {
+        container.resolveAsViewController({{ module_info.name }}ViewProtocol.self)
+    }
+}
