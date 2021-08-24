@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import PassKit
 
-final class shoppingCartViewController: UIViewController, shoppingCartViewProtocol {
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var totalPriceLabel: UILabel!
+
+final class shoppingCartViewController: UIViewController, shoppingCartViewProtocol,
+                                        PKPaymentAuthorizationViewControllerDelegate {
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var totalPriceButton: UIButton!
+    
+    @IBAction func payButtonPress() {
+        pay()
+    }
+
     // MARK: - Public Properties
     
     var presenter: shoppingCartPresenterFromViewProtocol!
@@ -19,17 +27,17 @@ final class shoppingCartViewController: UIViewController, shoppingCartViewProtoc
     private var coreDataManager: CoreDataManagerProtocol! {
         globalContainer.resolve(CoreDataManagerProtocol.self)
     }
+    var sum = 0
     var arrayOfFavoritePrice = [Int](){
         didSet{
-            var sum = 0
             for item in arrayOfFavoritePrice{
                 sum += item
             }
-            totalPriceLabel.text = "total price is \(sum)"
+            totalPriceButton.setTitle("total price is \(sum)", for: .normal)
         }
     }
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = .init(title: Constants.titleBackButton,
@@ -41,13 +49,45 @@ final class shoppingCartViewController: UIViewController, shoppingCartViewProtoc
                                                        target: self,
                                                        action: #selector(deleteFromBasket))
         presenter.viewDidLoad()
-        sumOfFav()
-        totalPriceLabel.layer.cornerRadius = CGFloat(Constants.cornerRadius)
+        totalPriceButton.layer.cornerRadius = CGFloat(Constants.cornerRadius)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: CollectionViewCell().reuseId,
                                       bundle: nil), forCellWithReuseIdentifier: CollectionViewCell().reuseId)
         presenter.getData()
+    }
+    
+    
+
+    func pay(){
+        if (PKPaymentAuthorizationViewController.canMakePayments()) {
+            let paymentRequest = PKPaymentRequest()
+            paymentRequest.merchantIdentifier = Constants.urlStr
+            paymentRequest.supportedNetworks = [PKPaymentNetwork.visa,
+                                                PKPaymentNetwork.masterCard,
+                                                PKPaymentNetwork.amex]
+            paymentRequest.merchantCapabilities = PKMerchantCapability.capability3DS
+            paymentRequest.countryCode = "RU"
+            paymentRequest.currencyCode = "RUB"
+            paymentRequest.requiredShippingAddressFields = PKAddressField.all;
+            let totalItem = PKPaymentSummaryItem(label:"Foo", amount:NSDecimalNumber(string:"\(sum)"))
+            paymentRequest.paymentSummaryItems = [totalItem];
+            let payAuth = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
+            payAuth?.delegate = self
+            self.present(payAuth!, animated:true, completion: nil)
+        }
+    }
+    
+    private func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController!,
+                                                    didAuthorizePayment payment: PKPayment!,
+                                                    completion:((PKPaymentAuthorizationStatus) -> Void)!) {
+        NSLog("%@", NSString(data:payment.token.paymentData, encoding:String.Encoding.utf8.rawValue)!)
+        completion(PKPaymentAuthorizationStatus.success)
+    }
+    
+    // The Apple Pay overlay has finished
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     @objc func backBarButtonPress() {
@@ -57,13 +97,9 @@ final class shoppingCartViewController: UIViewController, shoppingCartViewProtoc
         coreDataManager.resetAllData()
         Coordinator.shared.display(confViews: shoppingCartConfigurator())
     }
-    func sumOfFav(){
-//        totalPriceLabel.text = "total Price\(arrayOfFavoritePrice.sum())"
-  
-    }
-    
-    
 }
+
+
 extension shoppingCartViewController: UICollectionViewDelegate,
                                       UICollectionViewDataSource,
                                       UICollectionViewDelegateFlowLayout {
@@ -103,19 +139,19 @@ extension shoppingCartViewController: UICollectionViewDelegate,
         let d = c / a
         return CGSize(width: d, height: d)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return Constants.layautEdge
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(Constants.lineSpacing)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(Constants.lineSpacing)
     }

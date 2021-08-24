@@ -20,7 +20,8 @@ final class ViewvedProductViewController: UIViewController, ViewvedProductViewPr
     }
     
     @IBAction func basket(_ sender: Any) {
-        productArrayToSave.append(currentProduct!)
+        guard let currentProduct = currentProduct else {return}
+        productArrayToSave.append(currentProduct)
         coreDataManager.saveData(array: productArrayToSave)
     }
     

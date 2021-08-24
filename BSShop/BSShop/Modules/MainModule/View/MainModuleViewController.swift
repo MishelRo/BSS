@@ -13,13 +13,12 @@ final class MainModuleViewController: UIViewController, MainModuleViewProtocol {
 
     // MARK: - Public Properties
     var presenter: MainModulePresenterFromViewProtocol!
-    @IBOutlet weak var tableView: UITableView!
-
     private var networkManager: NetworkProtocol! {
         globalContainer.resolve(NetworkProtocol.self)
     }
-    @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var collectionView: UICollectionView!
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {

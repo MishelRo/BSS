@@ -41,7 +41,6 @@ final class CategoryModuleViewController: UIViewController, CategoryModuleViewPr
 
     func getCategoryData(array: [SubCategory]) {
         CategoryModuleViewController.subcat = array
-        print(CategoryModuleViewController.subcat.count)
     }
 
     @objc func backsBarButtonPress() {

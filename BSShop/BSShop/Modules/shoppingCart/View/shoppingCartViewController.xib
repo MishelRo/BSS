@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="shoppingCartViewController" customModule="BSShop" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="6De-4Z-BJF" id="iZj-8P-1v0"/>
-                <outlet property="totalPriceLabel" destination="9wC-dC-deS" id="M4l-Tg-PZs"/>
+                <outlet property="totalPriceButton" destination="FY5-U4-ibe" id="wT8-bL-XkF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Q3p-Ee-1CD"/>
             </connections>
         </placeholder>
@@ -35,26 +35,27 @@
                         <outlet property="prefetchDataSource" destination="-1" id="f6c-EJ-VhN"/>
                     </connections>
                 </collectionView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wC-dC-deS">
-                    <rect key="frame" x="30" y="786" width="354" height="76"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FY5-U4-ibe">
+                    <rect key="frame" x="30" y="786" width="364" height="76"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="76" id="dgz-Vj-ne7"/>
+                        <constraint firstAttribute="height" constant="76" id="ZCd-o7-tyZ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <state key="normal" title="Pay - 0"/>
+                    <connections>
+                        <action selector="payButtonPress" destination="-1" eventType="touchUpInside" id="bQA-Wt-g8A"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="9wC-dC-deS" firstAttribute="top" secondItem="6De-4Z-BJF" secondAttribute="bottom" constant="50" id="22L-x2-POz"/>
-                <constraint firstItem="9wC-dC-deS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="8oa-CP-z7M"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9wC-dC-deS" secondAttribute="trailing" constant="30" id="LvY-nV-Jax"/>
+                <constraint firstItem="FY5-U4-ibe" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Ngd-Bd-y4q"/>
                 <constraint firstItem="6De-4Z-BJF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="PTN-8V-SUH"/>
                 <constraint firstItem="6De-4Z-BJF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gFp-gd-LuG"/>
-                <constraint firstItem="9wC-dC-deS" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="p6m-9x-kEe"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="FY5-U4-ibe" secondAttribute="trailing" constant="20" id="kcI-PO-efW"/>
+                <constraint firstItem="FY5-U4-ibe" firstAttribute="top" secondItem="6De-4Z-BJF" secondAttribute="bottom" constant="50" id="qoU-RV-ph1"/>
+                <constraint firstItem="FY5-U4-ibe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="ubp-RQ-Iqw"/>
                 <constraint firstItem="6De-4Z-BJF" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="vgh-NQ-ucr"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>

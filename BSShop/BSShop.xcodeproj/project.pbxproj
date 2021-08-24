@@ -247,7 +247,6 @@
 		633F171B068A6E111961FB88 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D9F37111175D589327596501 /* Pods-BSShop.debug.xcconfig */,
 				13C72DFFDA38A92824A4BD56 /* Pods-BSShop.release.xcconfig */,
 				6CE76BE3E392578CC45A3AC8 /* Pods-BSShop.debug.xcconfig */,
 			);
